@@ -25,8 +25,9 @@ kubectl -n monitoring patch prometheus my-kube-prometheus-stack-prometheus --typ
 1. Be attention to the RBAC roles needed to be created first. See `k8s/001-rbac*`;
 2. Build the Docker image on `prom-dump` directory and push it to your container registry;
 3. Create the ConfigMap `k8s/003-configmap-upload-s3.yaml` for the script `upload_to_s3.py`.
-4. Before setting up the cronjob, you're going to need to patch the `statefulset` of Prometheus. (I'm not proud of this)
+4. Before setting up the cronjob, you're going to need to patch the `statefulset` of Prometheus. 
 
+> (I'm not proud of this.)
 - AWS credentials;
 - S3 bucket name; 
 - the script mount path.
@@ -111,7 +112,7 @@ kubectl patch statefulset prometheus-my-kube-prometheus-stack-prometheus -n moni
 }'
 ```
 
-4. Create the Kubernetes cronjob to run the script at a specific interval.
+5. Create the Kubernetes cronjob to run the script at a specific interval.
 
 ```
 kubectl apply -f k8s/002-cronjob-prometheus-dump.yaml
