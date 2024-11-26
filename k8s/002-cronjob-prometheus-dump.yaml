@@ -1,0 +1,24 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: prometheus-dump
+  namespace: monitoring
+spec:
+  schedule: "39 15 * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          labels:
+            app: prometheus-dump
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: prometheus-dump
+            image: index.docker.io/ambrosiaaaaa/prometheus-dump:v0.1.2
+            imagePullPolicy: Always
+

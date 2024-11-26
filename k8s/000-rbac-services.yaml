@@ -1,0 +1,24 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: monitoring
+  name: list-services
+rules:
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: list-services-binding
+  namespace: monitoring
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: monitoring
+roleRef:
+  kind: Role
+  name: list-services
+  apiGroup: rbac.authorization.k8s.io
