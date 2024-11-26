@@ -13,8 +13,8 @@ This repo contains a script that dumps the Prometheus data compressed into a tar
 
 ## Requirements
 
-Prometheus up and running - Mine for this example was installed by [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack).
-Enable snapshot through Prometheus API. More info [here](https://prometheus.io/docs/prometheus/latest/querying/api/#tsdb-admin-apis)
+- Prometheus up and running (Mine was installed by [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack);<br>
+- Enable snapshot through Prometheus API. More info [here](https://prometheus.io/docs/prometheus/latest/querying/api/#tsdb-admin-apis)
 
 ```
 kubectl -n monitoring patch prometheus my-kube-prometheus-stack-prometheus --type merge --patch '{"spec":{"enableAdminAPI":true}}'
